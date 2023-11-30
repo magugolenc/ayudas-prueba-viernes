@@ -1,0 +1,48 @@
+package SimuPro1;
+
+import java.util.Arrays;
+import java.util.Scanner;
+
+public class Apartado_2 {
+public static String [] añadeColor (String [] introducidos) {
+	String [] colores = {"Verde", "Rojo", "Azul", "Amarillo","Naranja", "Rosa", "Negro", "Blanco", "Morado"};
+	String [] noEsColor= new String [introducidos.length];
+	String [] orden = new String [8];
+	int ordenado=0;
+	int noCo = 0;
+	int f = 0;
+	boolean coincide= false;
+	for (int i = 0; i<introducidos.length;i++) {
+		coincide=false;
+		for (int j = 0;j<colores.length;j++) {
+			if (introducidos[i].equalsIgnoreCase(colores[j])==true) {
+				coincide=true;
+			}
+			}
+		if (coincide) {		
+			orden [ordenado++] = introducidos[i];
+		}
+		else {
+			noEsColor[noCo++]=introducidos[i];
+		}
+	}
+	while(ordenado<introducidos.length) {
+	orden[ordenado++]=noEsColor[f++];
+	}
+	return orden;
+}
+public static void main (String []args) {
+try {
+	Scanner tc = new Scanner (System.in);
+	String [] introducido = new String [8];
+	
+	for (int i = 0; i<introducido.length;i++) {
+		System.out.println("Introduce tu color o palabra nº: "+i);
+		introducido[i]=tc.next();
+	}
+	System.out.println("Ordenados = "+Arrays.toString(añadeColor(introducido)));
+ } catch(Exception e) {
+	 System.out.println("Error introduzca un caracter válido.");
+ }
+}
+}
